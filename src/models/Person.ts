@@ -21,22 +21,46 @@ export class Person {
 
   @computed
   public get limits() {
-    let calories;
+    let regularCalories;
 
     if (this.gender === "female") {
-      calories =
+      regularCalories =
         447.593 + 9.247 * this.weight + 3.098 * this.height - 4.33 * this.age;
     } else {
-      calories =
+      regularCalories =
         88.362 + 13.397 * this.weight + 4.799 * this.height - 5.677 * this.age;
     }
 
-    calories *= activenessFactors[this.activeness];
+    regularCalories *= activenessFactors[this.activeness];
 
+    const calories = regularCalories * ((100 + this.delta) / 100);
     const carbs = ((this.carbPercentage / 100) * calories) / 4;
     const proteins = ((this.proteinPercentage / 100) * calories) / 4;
     const fats = ((this.fatPercentage / 100) * calories) / 9;
 
-    return { calories, carbs, proteins, fats };
+    return { regularCalories, calories, carbs, proteins, fats };
+  }
+
+  @computed
+  public get hasAllBodyParameters() {
+    return (
+      !Number.isNaN(this.age) &&
+      !Number.isNaN(this.weight) &&
+      !Number.isNaN(this.height)
+    );
+  }
+
+  @computed
+  public get regularCalories() {
+    return Math.round(this.limits.regularCalories);
+  }
+
+  @computed
+  public get calories() {
+    return Math.round(this.limits.calories);
+  }
+
+  public set calories(calories) {
+    // ignore
   }
 }

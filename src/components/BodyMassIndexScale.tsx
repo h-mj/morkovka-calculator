@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import * as React from "react";
 import styled from "styled-components";
 import { Person } from "../models/Person";
+import { Block } from "./Block";
 
 const bodyMassIndexRanges = [
   { lt: 16, name: "Выраженный дефицит массы тела" },
@@ -21,6 +22,11 @@ interface IProps {
 export class BodyMassIndexScale extends React.Component<IProps> {
   public render() {
     const { person } = this.props;
+
+    if (!person.hasAllBodyParameters) {
+      return null;
+    }
+
     const { height, weight } = person;
     const heightSquared = (height * height) / 10000;
     const bodyMassIndex = weight / heightSquared;
@@ -31,8 +37,12 @@ export class BodyMassIndexScale extends React.Component<IProps> {
     const range = bodyMassIndexRanges[rangeIndex];
     const higherRange = bodyMassIndexRanges[rangeIndex + 1];
 
+    if (typeof range === "undefined") {
+      return false;
+    }
+
     return (
-      <Div>
+      <Block>
         {typeof lowerRange !== "undefined" && (
           <>
             <SideSection>{lowerRange.name}</SideSection>
@@ -46,16 +56,10 @@ export class BodyMassIndexScale extends React.Component<IProps> {
             <SideSection>{higherRange.name}</SideSection>
           </>
         )}
-      </Div>
+      </Block>
     );
   }
 }
-
-const Div = styled.div`
-  width: 100%;
-  height: 4rem;
-  display: flex;
-`;
 
 const Section = styled.div`
   width: 100%;

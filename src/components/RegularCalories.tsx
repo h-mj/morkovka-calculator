@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import * as React from "react";
 import styled from "styled-components";
 import { Person } from "../models/Person";
+import { Block } from "./Block";
 
 const activenessAdjectives = {
   extreme: "очень высокой",
@@ -20,22 +21,24 @@ export class RegularCalories extends React.Component<IProps> {
   public render() {
     const { person } = this.props;
 
+    if (!person.hasAllBodyParameters) {
+      return null;
+    }
+
     return (
       <Div>
         <Section>
-          Дневная норма калорий при {activenessAdjectives[person.activeness]}{" "}
-          активности
+          {`Дневная норма калорий при ${
+            activenessAdjectives[person.activeness]
+          } активности`}
         </Section>
-        <Section>{person.limits.calories.toFixed(0)}</Section>
+        <Section>{person.regularCalories}</Section>
       </Div>
     );
   }
 }
 
-const Div = styled.div`
-  width: 100%;
-  height: 4rem;
-  display: flex;
+const Div = Block.extend`
   align-items: center;
 `;
 

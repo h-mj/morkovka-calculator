@@ -1,6 +1,6 @@
 import * as React from "react";
-import styled from "styled-components";
 import { Person } from "../models/Person";
+import { Block } from "./Block";
 import { Parameter } from "./Parameter";
 
 const genderOptions: Array<[string, string]> = [
@@ -20,9 +20,9 @@ interface IProps {
   person: Person;
 }
 
-export const Parameters: React.SFC<IProps> = ({ person }) => {
+export const BodyParameters: React.SFC<IProps> = ({ person }) => {
   return (
-    <Div>
+    <Block>
       <Parameter
         person={person}
         field="gender"
@@ -38,11 +38,6 @@ export const Parameters: React.SFC<IProps> = ({ person }) => {
         title="Активность"
         options={activenessOptions}
       />
-    </Div>
+    </Block>
   );
 };
-
-const Div = styled.div`
-  width: 100%;
-  display: flex;
-`;

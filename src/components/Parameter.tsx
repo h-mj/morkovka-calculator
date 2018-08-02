@@ -21,7 +21,11 @@ export class Parameter extends React.Component<IProps> {
       <Div>
         <Title>{title}</Title>
         {typeof options === "undefined" ? (
-          <Input value={person[field]} onChange={this.handleChange} />
+          <Input
+            value={person[field]}
+            onChange={this.handleChange}
+            type="number"
+          />
         ) : (
           <Select value={person[field]} onChange={this.handleChange}>
             {options.map(([optionTitle, optionValue]) => (
@@ -39,7 +43,13 @@ export class Parameter extends React.Component<IProps> {
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { person, field } = this.props;
-    person[field] = event.target.value;
+    let value: string | number = event.target.value;
+
+    if (field !== "activeness") {
+      value = parseFloat(value);
+    }
+
+    person[field] = value;
   };
 }
 

@@ -2,20 +2,19 @@ import * as React from "react";
 import { render } from "react-dom";
 import { Body } from "./components/Body";
 import { BodyMassIndexScale } from "./components/BodyMassIndexScale";
-import { Parameters } from "./components/Parameters";
+import { BodyParameters } from "./components/BodyParameters";
+import { NutritionParameters } from "./components/NutritionParameters";
 import { RegularCalories } from "./components/RegularCalories";
-import { Separator } from "./components/Separator";
 import { Person } from "./models/Person";
 
 const person = new Person();
 
 render(
   <Body>
-    <Parameters person={person} />
-    <Separator />
+    <BodyParameters person={person} />
     <BodyMassIndexScale person={person} />
-    <Separator />
     <RegularCalories person={person} />
+    <NutritionParameters person={person} />
   </Body>,
   document.getElementById("root")
 );

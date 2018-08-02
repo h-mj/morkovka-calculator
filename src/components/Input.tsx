@@ -7,6 +7,7 @@ export const Input = styled.input`
   outline: 0;
   width: 100%;
   appearance: none;
+  -webkit-appearance: none;
   background: none;
   font-size: 1.1rem;
   text-align: center;
