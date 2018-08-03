@@ -9,40 +9,124 @@ const activenessFactors = {
 };
 
 export class Person {
-  @observable public gender = "female";
-  @observable public age = "42";
-  @observable public height = "168";
-  @observable public weight = "58";
-  @observable public activeness = "moderate";
-  @observable public delta = "0";
   @observable public carbPercentage = 30;
   @observable public proteinPercentage = 40;
   @observable public fatPercentage = 30;
 
-  @computed
-  public get bodyMassIndex() {
-    const weight = Number.parseFloat(this.weight);
-    const height = Number.parseFloat(this.height);
-    const heightSquared = (height / 100) * (height / 100);
+  @observable
+  private internal = {
+    activeness: "moderate",
+    age: "42",
+    calories: "2050",
+    delta: "0",
+    gender: "female",
+    height: "168",
+    weight: "58"
+  };
 
-    return weight / heightSquared;
+  @computed
+  public get gender() {
+    return this.internal.gender;
   }
 
-  public getCorrespondingWeight(bodyMassIndex: number) {
-    const height = Number.parseFloat(this.height);
-    const heightSquared = (height / 100) * (height / 100);
+  public set gender(gender) {
+    this.internal.gender = gender;
+    this.updateCalories();
+  }
 
-    return bodyMassIndex * heightSquared;
+  @computed
+  public get age() {
+    return this.internal.age;
+  }
+
+  public set age(age) {
+    this.internal.age = age;
+    this.updateCalories();
+  }
+
+  @computed
+  public get height() {
+    return this.internal.height;
+  }
+
+  public set height(height) {
+    this.internal.height = height;
+    this.updateCalories();
+  }
+
+  @computed
+  public get weight() {
+    return this.internal.weight;
+  }
+
+  public set weight(weight) {
+    this.internal.weight = weight;
+    this.updateCalories();
+  }
+
+  @computed
+  public get activeness() {
+    return this.internal.activeness;
+  }
+
+  public set activeness(activeness) {
+    this.internal.activeness = activeness;
+    this.updateCalories();
+  }
+
+  @computed
+  public get calories() {
+    return this.internal.calories;
+  }
+
+  public set calories(calories) {
+    const parsed = Number.parseFloat(calories);
+
+    if (Number.isFinite(parsed)) {
+      this.internal.calories = parsed.toString();
+      this.internal.delta = Math.round(
+        (parsed / this.limits.regularCalories) * 100 - 100
+      ).toString();
+    } else {
+      this.internal.calories = calories;
+      this.internal.delta = "";
+    }
+  }
+
+  @computed
+  public get delta() {
+    return this.internal.delta;
+  }
+
+  public set delta(delta) {
+    const parsed = Number.parseFloat(delta);
+
+    if (Number.isFinite(parsed)) {
+      this.internal.delta = parsed.toString();
+      this.updateCalories();
+    } else {
+      this.internal.delta = delta;
+      this.internal.calories = "";
+    }
+  }
+
+  @computed
+  public get hasAllBodyParameters() {
+    return (
+      Number.isFinite(Number.parseFloat(this.age)) &&
+      Number.isFinite(Number.parseFloat(this.weight)) &&
+      Number.isFinite(Number.parseFloat(this.height))
+    );
   }
 
   @computed
   public get limits() {
-    let regularCalories;
-
     const age = Number.parseFloat(this.age);
     const weight = Number.parseFloat(this.weight);
     const height = Number.parseFloat(this.height);
     const delta = Number.parseFloat(this.delta);
+
+    let regularCalories;
 
     if (this.gender === "female") {
       regularCalories = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
@@ -61,25 +145,27 @@ export class Person {
   }
 
   @computed
-  public get hasAllBodyParameters() {
-    return (
-      !Number.isNaN(Number.parseFloat(this.age)) &&
-      !Number.isNaN(Number.parseFloat(this.weight)) &&
-      !Number.isNaN(Number.parseFloat(this.height))
-    );
-  }
-
-  @computed
   public get regularCalories() {
-    return Math.round(this.limits.regularCalories);
+    return Math.round(this.limits.regularCalories).toString();
   }
 
   @computed
-  public get calories() {
-    return Math.round(this.limits.calories);
+  public get bodyMassIndex() {
+    const weight = Number.parseFloat(this.weight);
+    const height = Number.parseFloat(this.height);
+    const heightSquared = (height / 100) * (height / 100);
+
+    return weight / heightSquared;
   }
 
-  public set calories(calories) {
-    // ignore
+  public getCorrespondingWeight(bodyMassIndex: number) {
+    const height = Number.parseFloat(this.height);
+    const heightSquared = (height / 100) * (height / 100);
+
+    return bodyMassIndex * heightSquared;
+  }
+
+  private updateCalories() {
+    this.internal.calories = Math.round(this.limits.calories).toString();
   }
 }
