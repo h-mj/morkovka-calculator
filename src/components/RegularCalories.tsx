@@ -45,4 +45,10 @@ const Div = Block.extend`
 const Section = styled.div`
   width: 100%;
   padding: 0 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
 `;

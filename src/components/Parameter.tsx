@@ -43,13 +43,7 @@ export class Parameter extends React.Component<IProps> {
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { person, field } = this.props;
-    let value: string | number = event.target.value;
-
-    if (field !== "activeness") {
-      value = parseFloat(value);
-    }
-
-    person[field] = value;
+    person[field] = event.target.value;
   };
 }
 

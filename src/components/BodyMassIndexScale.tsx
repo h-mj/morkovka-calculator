@@ -27,12 +27,10 @@ export class BodyMassIndexScale extends React.Component<IProps> {
       return null;
     }
 
-    const { height, weight } = person;
-    const heightSquared = (height * height) / 10000;
-    const bodyMassIndex = weight / heightSquared;
     const rangeIndex = bodyMassIndexRanges.findIndex(
-      ({ lt }) => bodyMassIndex < lt
+      ({ lt }) => person.bodyMassIndex < lt
     );
+
     const lowerRange = bodyMassIndexRanges[rangeIndex - 1];
     const range = bodyMassIndexRanges[rangeIndex];
     const higherRange = bodyMassIndexRanges[rangeIndex + 1];
@@ -46,13 +44,13 @@ export class BodyMassIndexScale extends React.Component<IProps> {
         {typeof lowerRange !== "undefined" && (
           <>
             <SideSection>{lowerRange.name}</SideSection>
-            <Post value={lowerRange.lt * heightSquared} />
+            <Post value={person.getCorrespondingWeight(lowerRange.lt)} />
           </>
         )}
         <Section>{range.name}</Section>
         {typeof higherRange !== "undefined" && (
           <>
-            <Post value={range.lt * heightSquared} />
+            <Post value={person.getCorrespondingWeight(range.lt)} />
             <SideSection>{higherRange.name}</SideSection>
           </>
         )}
@@ -105,6 +103,7 @@ const ZeroWidth = styled.div`
 const PostTitle = styled.div`
   font-size: 0.9rem;
   padding: 0.2rem 0.3rem;
+  background-color: #ffffff;
   border: solid 1px rgba(0, 0, 0, 0.2);
 `;
 
