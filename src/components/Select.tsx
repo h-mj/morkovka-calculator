@@ -5,7 +5,6 @@ export const Select = styled.select`
   margin: 0;
   padding: 0;
   outline: 0;
-  width: 100%;
   appearance: none;
   background: none;
   text-align: center;
