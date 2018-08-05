@@ -37,7 +37,7 @@ const Div = styled.div`
   flex-shrink: 0;
   border-left: solid 1px rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 40rem) {
+  @media only screen and (max-width: 40rem) {
     width: 100%;
     height: 8rem;
     border-left: 0;
