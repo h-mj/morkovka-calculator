@@ -53,6 +53,15 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 75rem) {
+    height: 4rem;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 `;
 
 const Title = styled.div`

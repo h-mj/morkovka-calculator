@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
 
     <style>
       @import url("https://fonts.googleapis.com/css?family=Roboto");
@@ -12,6 +13,12 @@
         color: rgba(0, 0, 0, 0.9);
         background-color: tomato;
         font-family: "Roboto", sans-serif;
+      }
+
+      @media (max-width: 75rem) {
+        body {
+          background-color: white;
+        }
       }
 
       input[type='number'] {

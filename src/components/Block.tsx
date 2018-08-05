@@ -9,4 +9,9 @@ export const Block = styled.div`
   &:last-child {
     border-bottom: 0;
   }
+
+  @media (max-width: 75rem) {
+    height: inherit;
+    flex-direction: column;
+  }
 `;

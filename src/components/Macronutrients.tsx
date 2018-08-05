@@ -36,6 +36,12 @@ const Div = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   border-left: solid 1px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 75rem) {
+    width: 100%;
+    height: 8rem;
+    border-left: 0;
+  }
 `;
 
 const Labels = styled.div`

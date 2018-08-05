@@ -40,7 +40,7 @@ export class BodyMassIndexScale extends React.Component<IProps> {
     }
 
     return (
-      <Block>
+      <ExtendedBlock>
         {typeof lowerRange !== "undefined" && (
           <>
             <SideSection>{lowerRange.name}</SideSection>
@@ -54,10 +54,17 @@ export class BodyMassIndexScale extends React.Component<IProps> {
             <SideSection>{higherRange.name}</SideSection>
           </>
         )}
-      </Block>
+      </ExtendedBlock>
     );
   }
 }
+
+const ExtendedBlock = Block.extend`
+  @media (max-width: 75rem) {
+    height: 4rem;
+    flex-direction: row;
+  }
+`;
 
 const Section = styled.div`
   width: 100%;

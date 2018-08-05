@@ -51,4 +51,17 @@ const Section = styled.div`
   align-items: center;
   box-sizing: border-box;
   justify-content: center;
+
+  @media (max-width: 75rem) {
+    &:first-child {
+      height: 2rem;
+      font-size: 0.9rem;
+      border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+    }
+
+    &:last-child {
+      height: 4rem;
+      font-size: 1.5rem;
+    }
+  }
 `;

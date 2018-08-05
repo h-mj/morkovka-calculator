@@ -43,6 +43,10 @@ const Div = styled.div`
   height: 2rem;
   flex-shrink: 0;
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 75rem) {
+    background-color: white;
+  }
 `;
 
 const Handle = styled.div`
