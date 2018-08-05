@@ -43,16 +43,13 @@ const Div = styled.div`
   height: 2rem;
   flex-shrink: 0;
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
-
-  @media (max-width: 75rem) {
-    background-color: white;
-  }
 `;
 
 const Handle = styled.div`
   width: 0.5rem;
   height: 2rem;
   cursor: ew-resize;
+  background-color: white;
   border-left: solid 1px rgba(0, 0, 0, 0.2);
   border-right: solid 1px rgba(0, 0, 0, 0.2);
 `;

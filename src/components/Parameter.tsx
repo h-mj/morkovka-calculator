@@ -54,7 +54,7 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media (max-width: 75rem) {
+  @media (max-width: 40rem) {
     height: 4rem;
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 

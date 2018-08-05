@@ -45,7 +45,7 @@ const Section = styled.div`
   font-size: 1.5rem;
   flex-direction: column;
 
-  @media (max-width: 75rem) {
+  @media (max-width: 40rem) {
     border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 
     &:last-child {

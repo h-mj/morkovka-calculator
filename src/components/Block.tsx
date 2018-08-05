@@ -10,7 +10,7 @@ export const Block = styled.div`
     border-bottom: 0;
   }
 
-  @media (max-width: 75rem) {
+  @media (max-width: 40rem) {
     height: inherit;
     flex-direction: column;
   }

@@ -52,7 +52,7 @@ const Section = styled.div`
   box-sizing: border-box;
   justify-content: center;
 
-  @media (max-width: 75rem) {
+  @media (max-width: 40rem) {
     &:first-child {
       height: 2rem;
       font-size: 0.9rem;

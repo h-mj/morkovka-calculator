@@ -60,7 +60,7 @@ export class BodyMassIndexScale extends React.Component<IProps> {
 }
 
 const ExtendedBlock = Block.extend`
-  @media (max-width: 75rem) {
+  @media (max-width: 40rem) {
     height: 4rem;
     flex-direction: row;
   }
