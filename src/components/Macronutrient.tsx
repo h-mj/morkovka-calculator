@@ -25,12 +25,17 @@ export class Macronutrient extends React.Component<IMacronutrientProps> {
     const grams = person.limits[field];
     const gramsPerKg = grams / Number.parseFloat(person.weight);
 
+    if (isNaN(grams)) {
+      return null;
+    }
+
     return (
       <Section>
         <Secondary>{fieldTexts[field]}</Secondary>
         <Primary>{person[field]}%</Primary>
         <Secondary>
-          {round(grams)}г, {round(gramsPerKg, 2)}г/кг
+          {round(grams)}г
+          {isFinite(gramsPerKg) && `, ${round(gramsPerKg, 2)}г/кг`}
         </Secondary>
       </Section>
     );

@@ -13,7 +13,7 @@ interface IProps {
 export class Macronutrients extends React.Component<IProps> {
   public render() {
     const { person } = this.props;
-    const order: [string, string, string] = ["carbs", "proteins", "fats"];
+    const order: [string, string, string] = ["proteins", "fats", "carbs"];
 
     return (
       <Div>
