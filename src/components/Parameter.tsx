@@ -6,7 +6,7 @@ import { Input } from "./Input";
 import { Select } from "./Select";
 
 interface IProps {
-  title: string;
+  title?: string;
   field: string;
   person: Person;
   options?: Array<[string, string]>;
@@ -19,7 +19,7 @@ export class Parameter extends React.Component<IProps> {
 
     return (
       <Div>
-        <Title>{title}</Title>
+        {title && <Title>{title}</Title>}
         {typeof options === "undefined" ? (
           <Input
             value={person[field]}
@@ -49,7 +49,7 @@ export class Parameter extends React.Component<IProps> {
 
 const Div = styled.div`
   width: 100%;
-  height: 4rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

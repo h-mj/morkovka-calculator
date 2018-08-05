@@ -22,7 +22,7 @@ interface IProps {
 
 export const BodyParameters: React.SFC<IProps> = ({ person }) => {
   return (
-    <Block>
+    <ExtendedBlock>
       <Parameter
         person={person}
         field="gender"
@@ -38,6 +38,10 @@ export const BodyParameters: React.SFC<IProps> = ({ person }) => {
         title="Активность"
         options={activenessOptions}
       />
-    </Block>
+    </ExtendedBlock>
   );
 };
+
+const ExtendedBlock = Block.extend`
+  font-size: 1.1rem;
+`;

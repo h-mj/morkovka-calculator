@@ -9,9 +9,9 @@ const activenessFactors = {
 };
 
 export class Person {
-  @observable public carbPercentage = 30;
-  @observable public proteinPercentage = 40;
-  @observable public fatPercentage = 30;
+  @observable public carbs = 30;
+  @observable public proteins = 40;
+  @observable public fats = 30;
 
   @observable
   private internal = {
@@ -137,9 +137,9 @@ export class Person {
     regularCalories *= activenessFactors[this.activeness];
 
     const calories = regularCalories * ((100 + delta) / 100);
-    const carbs = ((this.carbPercentage / 100) * calories) / 4;
-    const proteins = ((this.proteinPercentage / 100) * calories) / 4;
-    const fats = ((this.fatPercentage / 100) * calories) / 9;
+    const carbs = ((this.carbs / 100) * calories) / 4;
+    const proteins = ((this.proteins / 100) * calories) / 4;
+    const fats = ((this.fats / 100) * calories) / 9;
 
     return { regularCalories, calories, carbs, proteins, fats };
   }

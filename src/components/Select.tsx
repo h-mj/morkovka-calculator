@@ -8,7 +8,6 @@ export const Select = styled.select`
   width: 100%;
   appearance: none;
   background: none;
-  font-size: 1.1rem;
   text-align: center;
   box-sizing: border-box;
 `;

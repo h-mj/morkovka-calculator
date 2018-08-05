@@ -9,7 +9,6 @@ export const Input = styled.input`
   appearance: none;
   -webkit-appearance: none;
   background: none;
-  font-size: 1.1rem;
   text-align: center;
   box-sizing: border-box;
 `;
